@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+  <springProperty scope="context" name="appName" source="spring.application.name"/>
+  <springProperty scope="context" name="logPath" source="logging.file.path"/>
+
+  <property name="QUEUE_SIZE" value="512"/>
+  <!--  <property name="PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] %level [%contextName][%thread][%X{flowId}][%X{traceId}][%X{spanId}][%X{expend}] %logger{60}.%M:%line - %msg%n"/>-->
+  <property name="PATTERN"
+            value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] %level [%contextName][%thread][%X{traceId}] %logger{60}.%M:%line - %msg%n"/>
+
+  <!--1. 输出到控制台-->
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <Pattern>${PATTERN}</Pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <!--2. 输出到文档-->
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${logPath}/${appName}.log</file>
+    <encoder>
+      <pattern>${PATTERN}</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${logPath}/%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>100MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>15</maxHistory>
+      <!-- 日志文件上限大小，达到指定大小后删除旧的日志文件 -->
+      <totalSizeCap>10GB</totalSizeCap>
+    </rollingPolicy>
+  </appender>
+
+
+  <appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
+    <queueSize>${QUEUE_SIZE}</queueSize>
+    <appender-ref ref="FILE"/>
+  </appender>
+
+
+  <springProfile name="local,hw">
+    <root level="DEBUG">
+      <appender-ref ref="CONSOLE"/>
+      <appender-ref ref="ASYNC_FILE"/>
+    </root>
+  </springProfile>
+
+
+  <!-- https://logback.qos.ch/manual/configuration.html#shutdownHook and https://jira.qos.ch/browse/LOGBACK-1090 -->
+  <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+
+  <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+    <resetJUL>true</resetJUL>
+  </contextListener>
+
+
+</configuration>

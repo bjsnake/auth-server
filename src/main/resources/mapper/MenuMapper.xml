@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.landongnet.auth.mapper.MenuMapper">
+
+      <!-- 通用查询映射结果 -->
+      <resultMap id="BaseResultMap" type="com.landongnet.auth.model.entity.Menu">
+                <id column="id" property="id"/>
+                <result column="menu_id" property="menuId"/>
+                <result column="parent_id" property="parentId"/>
+                <result column="menu_name" property="menuName"/>
+                <result column="path" property="path"/>
+                <result column="component" property="component"/>
+                <result column="perms" property="perms"/>
+                <result column="icon" property="icon"/>
+                <result column="type" property="type"/>
+                <result column="order_num" property="orderNum"/>
+                <result column="create_time" property="createTime"/>
+                <result column="modify_time" property="modifyTime"/>
+                <result column="tenant_id" property="tenantId"/>
+      </resultMap>
+
+      <!-- 通用查询结果列 -->
+      <sql id="Base_Column_List">
+          id, menu_id, parent_id, menu_name, path, component, perms, icon, type, order_num, create_time, modify_time, tenant_id
+      </sql>
+
+    <select id="getPermissionsByEmpId" resultType="com.landongnet.auth.model.entity.Menu">
+        select
+            distinct perms
+        from role r
+                 left join emp_role er on (r.role_id=er.role_id)
+                 left join emp e on(e.emp_id = er.emp_id)
+                 left join role_menu rm on(rm.role_id = r.role_id)
+                 left join menu m on(m.menu_id=rm.menu_id)
+        where e.tenant_id = #{tenantId}
+          and e.emp_id = #{empId}
+          and m.perms is not null
+          and m.perms <![CDATA[<>]]> ''
+    </select>
+
+    <select id="getPermissionsBySupperAdmin" resultType="com.landongnet.auth.model.entity.Menu">
+        select
+            distinct perms
+        from menu e
+        where e.tenant_id = #{tenantId}
+          and e.perms is not null
+          and e.perms <![CDATA[<>]]> ''
+    </select>
+</mapper>

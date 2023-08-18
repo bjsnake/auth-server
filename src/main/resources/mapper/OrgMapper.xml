@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.landongnet.auth.mapper.OrgMapper">
+
+      <!-- 通用查询映射结果 -->
+      <resultMap id="BaseResultMap" type="com.landongnet.auth.model.entity.Org">
+                <id column="id" property="id"/>
+                <result column="org_id" property="orgId"/>
+                <result column="parent_id" property="parentId"/>
+                <result column="org_id_path" property="orgIdPath"/>
+                <result column="org_name" property="orgName"/>
+                <result column="order_num" property="orderNum"/>
+                <result column="create_time" property="createTime"/>
+                <result column="modify_time" property="modifyTime"/>
+                <result column="type" property="type"/>
+                <result column="tenant_id" property="tenantId"/>
+      </resultMap>
+
+      <!-- 通用查询结果列 -->
+      <sql id="Base_Column_List">
+          id, org_id, parent_id, org_id_path, org_name, order_num, create_time, modify_time, type, tenant_id
+      </sql>
+
+</mapper>
