@@ -43,7 +43,7 @@
 
 
   <springProfile name="local,hw">
-    <root level="DEBUG">
+    <root level="INFO">
       <appender-ref ref="CONSOLE"/>
       <appender-ref ref="ASYNC_FILE"/>
     </root>

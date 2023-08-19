@@ -1,7 +1,7 @@
 package com.landongnet.auth.security.rest;
 
+import com.github.snake.rock.common.model.R;
 import com.github.snake.rock.security.constant.EndpointConstant;
-import com.github.snake.rock.web.model.R;
 import com.landongnet.auth.constants.ServiceNameCons;
 import com.landongnet.auth.model.dto.LoginDTO;
 import feign.Logger;

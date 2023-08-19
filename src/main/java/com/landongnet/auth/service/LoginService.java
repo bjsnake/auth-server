@@ -1,6 +1,6 @@
 package com.landongnet.auth.service;
 
-import com.landongnet.auth.model.bo.LoginBO;
+import com.landongnet.auth.model.bo.EmpLoginBO;
 import com.landongnet.auth.model.dto.LoginDTO;
 
 /**
@@ -15,7 +15,7 @@ public interface LoginService {
      * @param loginBO
      * @return
      */
-    LoginDTO login(LoginBO loginBO);
+    LoginDTO login(EmpLoginBO loginBO);
 
     /**
      * web端刷新token

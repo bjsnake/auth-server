@@ -1,7 +1,7 @@
 package com.landongnet.auth.controller;
 
+import com.github.snake.rock.common.model.R;
 import com.github.snake.rock.web.controller.BaseController;
-import com.github.snake.rock.web.model.R;
 import com.landongnet.auth.model.dto.LoginDTO;
 import com.landongnet.auth.service.LoginService;
 import io.swagger.annotations.Api;

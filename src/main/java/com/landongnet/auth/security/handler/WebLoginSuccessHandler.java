@@ -1,9 +1,9 @@
 package com.landongnet.auth.security.handler;
 
 import com.github.snake.rock.common.exception.ServiceException;
+import com.github.snake.rock.common.model.R;
 import com.github.snake.rock.common.utils.RequestUtils;
 import com.github.snake.rock.common.utils.ResponseUtils;
-import com.github.snake.rock.web.model.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;

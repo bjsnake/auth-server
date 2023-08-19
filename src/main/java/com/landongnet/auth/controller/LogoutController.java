@@ -2,9 +2,9 @@ package com.landongnet.auth.controller;
 
 import com.github.snake.rock.common.constants.CommonCons;
 import com.github.snake.rock.common.constants.StringPool;
+import com.github.snake.rock.common.model.R;
 import com.github.snake.rock.security.utils.SecurityUtil;
 import com.github.snake.rock.web.controller.BaseController;
-import com.github.snake.rock.web.model.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

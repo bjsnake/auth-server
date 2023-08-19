@@ -1,8 +1,8 @@
 package com.landongnet.auth.controller;
 
+import com.github.snake.rock.common.model.R;
 import com.github.snake.rock.web.controller.BaseController;
-import com.github.snake.rock.web.model.R;
-import com.landongnet.auth.model.bo.LoginBO;
+import com.landongnet.auth.model.bo.EmpLoginBO;
 import com.landongnet.auth.model.dto.LoginDTO;
 import com.landongnet.auth.service.LoginService;
 import io.swagger.annotations.Api;
@@ -20,13 +20,14 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "统一登录")
 @AllArgsConstructor
 @RestController
+@RequestMapping
 public class LoginController extends BaseController {
 
     private final LoginService loginService;
 
-    @PostMapping(value = "/login")
-    @ApiOperation("统一登录登录")
-    public ResponseEntity<R<LoginDTO>> login(@Validated(LoginBO.Login.class) @RequestBody LoginBO loginBo){
+    @PostMapping(value = "/emp/login")
+    @ApiOperation("员工PC端登录")
+    public ResponseEntity<R<LoginDTO>> empLogin(@Validated(EmpLoginBO.Login.class) @RequestBody EmpLoginBO loginBo){
         return success(loginService.login(loginBo));
     }
 

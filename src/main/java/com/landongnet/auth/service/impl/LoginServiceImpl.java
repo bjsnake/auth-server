@@ -1,22 +1,20 @@
 package com.landongnet.auth.service.impl;
 
-import cn.hutool.core.util.StrUtil;
 import com.github.snake.rock.common.exception.BaseException;
+import com.github.snake.rock.common.model.R;
 import com.github.snake.rock.common.utils.RequestUtils;
 import com.github.snake.rock.common.utils.ResponseUtils;
 import com.github.snake.rock.security.constant.GrantTypeConstant;
-import com.github.snake.rock.web.model.R;
 import com.github.snake.rock.web.utils.ApiResultUtils;
 import com.landongnet.auth.constants.OauthClientCons;
 import com.landongnet.auth.constants.ParamsCons;
-import com.landongnet.auth.model.bo.LoginBO;
+import com.landongnet.auth.model.bo.EmpLoginBO;
 import com.landongnet.auth.model.dto.LoginDTO;
 import com.landongnet.auth.security.rest.OauthEndpointClient;
 import com.landongnet.auth.service.LoginService;
 import com.landongnet.auth.utils.BasicUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +36,7 @@ public class LoginServiceImpl implements LoginService {
     private final OauthEndpointClient oauthEndpointClient;
 
     @Override
-    public LoginDTO login(LoginBO loginBO) {
+    public LoginDTO login(EmpLoginBO loginBO) {
         Map<String,String> map = new HashMap<>();
         map.put("username",loginBO.getUsername());
         map.put("password",loginBO.getPassword());

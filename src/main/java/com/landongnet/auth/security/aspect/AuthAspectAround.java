@@ -1,6 +1,6 @@
 package com.landongnet.auth.security.aspect;
 
-import com.github.snake.rock.web.model.R;
+import com.github.snake.rock.common.model.R;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author snake
+ */
 @Slf4j
 @Aspect
 @Component

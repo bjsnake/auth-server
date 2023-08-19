@@ -19,14 +19,14 @@ import org.hibernate.validator.constraints.NotBlank;
 @NoArgsConstructor
 @ApiModel(description = "登录请求参数")
 @Accessors(chain = true)
-public class LoginBO {
+public class EmpLoginBO {
 
   @ApiModelProperty("账号")
-  @NotBlank(message = "请输入账号",groups = {Login.class})
+  @NotBlank(message = "请输入账号",groups = {EmpLoginBO.class})
   private String username;
 
   @ApiModelProperty("密码")
-  @NotBlank(message = "请输入密码",groups = {Login.class})
+  @NotBlank(message = "请输入密码",groups = {EmpLoginBO.class})
   private String password;
 
   @ApiModelProperty("渠道")
@@ -34,12 +34,6 @@ public class LoginBO {
 
   @ApiModelProperty("登录方式")
   private Integer logWay;
-
-  @ApiModelProperty("用户授权码")
-  private String code;
-
-  @ApiModelProperty("微信appId")
-  private String appId;
 
   public interface Login{
 
